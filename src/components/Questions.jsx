@@ -56,7 +56,7 @@ export const Questions = () => {
     }
 
     return (
-        <div className='question-container container vh-100 d-flex flex-column justify-content-center align-items-center bg-body-secondary'>
+        <div className='question-container vh-100 vw-100 d-flex flex-column justify-content-center align-items-center bg-body-secondary'>
             {!showResult ? <div className='bg-info-subtle rounded-top border m-5 p-5'>
                 <h4>Soru</h4>
                 <div style={{ maxWidth: 600, maxHeight: 600 }} key={question[currentIndex].id}>
