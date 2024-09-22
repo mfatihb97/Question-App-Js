@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import example from "../../data/example.json"
+import example from "../../../data/example.json"
 import "./question.css"
 
 export const Questions = () => {
