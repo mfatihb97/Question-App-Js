@@ -3,7 +3,8 @@ import { Welcome } from "./components/Exam/Welcome"
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom"
 import { NavigationBar } from "./components/Navbar/NavigationBar"
 import { HomePage } from "./components/HomePage/HomePage"
-import {SignUp} from "./components/SignUp/SignUp"
+import { SignUp } from "./components/SignUp/SignUp"
+import { Login } from "./components/Login/Login"
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Routes>
           <Route path='/welcome' element={<Welcome />} />
           <Route path="/questions" element={<Questions />} />
-          <Route path="/signup" element={<SignUp />}/>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
@@ -23,11 +25,11 @@ function App() {
 
 function Layout() {
   const location = useLocation();
-  const hideNavbarOnRoutes = ["/welcome", "/questions","/signup"];
+  const hideNavbarOnRoutes = ["/welcome", "/questions", "/signup","/login"];
 
   return (
     <>
-      {!hideNavbarOnRoutes.includes(location.pathname) && (<> <NavigationBar /><HomePage/> </>)}
+      {!hideNavbarOnRoutes.includes(location.pathname) && (<> <NavigationBar /><HomePage /> </>)}
     </>
   )
 }
