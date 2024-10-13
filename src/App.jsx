@@ -5,17 +5,33 @@ import { NavigationBar } from "./components/Navbar/NavigationBar"
 import { HomePage } from "./components/HomePage/HomePage"
 import { SignUp } from "./components/SignUp/SignUp"
 import { Login } from "./components/Login/Login"
+import { ProfilePage } from "./components/UserManagement/ProfilePage"
+import UserService from "./components/Service/UserService"
+import { UserManagementPage } from "./components/UserManagement/UserManagementPage"
+import { UpdateUser } from "./components/UserManagement/UpdateUser"
+import { Navigate } from "react-router-dom"
 
 function App() {
   return (
     <div className="vh-100 d-flex flex-column">
       <Router>
-        <Layout />
+        <NavigationBar />
         <Routes>
           <Route path='/welcome' element={<Welcome />} />
           <Route path="/questions" element={<Questions />} />
-          <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<ProfilePage />} />
+
+          {
+            UserService.adminOnly() && (
+              <>
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/admin/user-management" element={<UserManagementPage/>}/>
+                <Route path="/update-user/:userId" element={<UpdateUser/>}/>
+              </>
+            )
+          }
+          <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
       </Router>
     </div>
@@ -23,14 +39,14 @@ function App() {
 }
 
 
-function Layout() {
-  const location = useLocation();
-  const hideNavbarOnRoutes = ["/welcome", "/questions", "/signup","/login"];
+//function Layout() {
+//  const location = useLocation();
+// const hideNavbarOnRoutes = ["/welcome", "/questions", "/signup","/login"];
 
-  return (
-    <>
-      {!hideNavbarOnRoutes.includes(location.pathname) && (<> <NavigationBar /><HomePage /> </>)}
-    </>
-  )
-}
+// return (
+//   <>
+//    {!hideNavbarOnRoutes.includes(location.pathname) && (<> <NavigationBar /><HomePage /> </>)}
+//   </>
+// )
+
 export default App

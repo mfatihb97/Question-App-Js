@@ -22,11 +22,11 @@ export const Login = () => {
                 localStorage.setItem('role', userData.role)
                 navigate('/profile')
             } else {
-                setError(userData.error)
+                setError(userData.message)
             }
         } catch (error) {
             console.log(error)
-            setError(error)
+            setError(error.message)
             setTimeout(() => {
                 setError('');
             }, 5000)
