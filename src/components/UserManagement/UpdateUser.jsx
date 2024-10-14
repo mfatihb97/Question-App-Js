@@ -10,10 +10,11 @@ export const UpdateUser = () => {
     const {userId} = useParams();
 
     const [userData,setUserData]=useState({
+        id:{userId},
         name:'',
         email:'',
-        role:'',
-        city:''
+        city:'',
+        role:''
     })
 
     useEffect(()=>{
@@ -37,17 +38,19 @@ export const UpdateUser = () => {
             ...prevUserData,
             [name]:value
         }));
+        console.log(userData)
     }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
 
         try{
-            const confirmDelete = window.confirm('Are you sure you want to delete this user?');
-            if(confirmDelete){
+            const confirmUpdate = window.confirm('Are you sure you want to update this user?');
+            if(confirmUpdate){
                 const token = localStorage.getItem('token');
-                await UserService.updateUser(userId,userData,token)
-                navigate("/admin/user-management")
+                const res = await UserService.updateUser(userId,userData,token)
+                console.log(res)
+                navigate("/profile")
             }
             }catch(error){
                 console.error('Error updating user profile: ',error)
@@ -62,7 +65,7 @@ export const UpdateUser = () => {
                 <div className='border border-primary rounded p-5'>
                     <Form.Group className="mb-3" controlId="formBasicUsername">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter username" name='username' value={userData.username} onChange={handleInputChange} />
+                        <Form.Control type="text" placeholder="Enter username" name='username' value={userData.name} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
@@ -78,7 +81,7 @@ export const UpdateUser = () => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCity">
                         <Form.Label>City</Form.Label>
-                        <Form.Control type="text" placeholder="Enter City" name='City' value={userData.city} onChange={handleInputChange} />
+                        <Form.Control type="text" placeholder="Enter City" name='city' value={userData.city} onChange={handleInputChange} />
                     </Form.Group>
                     <Button type="submit">
                         Update

@@ -15,12 +15,10 @@ class UserService{
         }
     }
 
-    static async register(userData,token){
+    static async register(userData){
         try{
 
-            const response = await axios.post(`${UserService.BASE_URL}/auth/register`,userData,{
-                headers:{Authorization:`Bearer ${token}`}
-            })
+            const response = await axios.post(`${UserService.BASE_URL}/auth/register`,userData)
             return response.data;
        
         }catch(err){
@@ -83,7 +81,7 @@ class UserService{
     static async updateUser(userId,userData,token){
         try{
 
-            const response = await axios.delete(`${UserService.BASE_URL}/admin/update/${userId}`,userData,{
+            const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`,userData,{
                 headers:{Authorization:`Bearer ${token}`}
             })
             return response.data;

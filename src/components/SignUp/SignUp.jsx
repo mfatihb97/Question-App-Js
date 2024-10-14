@@ -9,10 +9,10 @@ export const SignUp = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
-        role: '',
+        role: 'USER',
         city: ''
     })
 
@@ -25,18 +25,15 @@ export const SignUp = () => {
         e.preventDefault();
 
         try {
-            const token = localStorage.getItem('token');
-            await UserService.register(formData, token);
-
+            await UserService.register(formData);
             setFormData({
-                username: '',
+                name: '',
                 email: '',
                 password: '',
-                role: '',
                 city: ''
             });
             alert('User registered successfully');
-            navigate('/admin/user-management');
+            navigate('/homepage');
 
         } catch (error) {
             console.log('Error registering user: ', error);
@@ -48,7 +45,7 @@ export const SignUp = () => {
             <div className='border border-primary rounded p-5'>
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" name='username' value={formData.username} onChange={handleInputChange} />
+                    <Form.Control type="text" placeholder="Enter username" name='name' value={formData.name} onChange={handleInputChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -60,14 +57,6 @@ export const SignUp = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" name='password' value={formData.password} onChange={handleInputChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicRole">
-                    <Form.Label>Role</Form.Label>
-                    <Form.Select aria-label='Default select example' name='role' value={formData.role} onChange={handleInputChange}>
-                        <option >Select role</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="USER">User</option>
-                    </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCity">
                     <Form.Label>City</Form.Label>

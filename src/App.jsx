@@ -17,15 +17,15 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path='/welcome' element={<Welcome />} />
+          <Route path='/homepage' element={<HomePage />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/signup" element={<SignUp />} />
 
           {
             UserService.adminOnly() && (
               <>
-                <Route path="/signup" element={<SignUp />} />
                 <Route path="/admin/user-management" element={<UserManagementPage/>}/>
                 <Route path="/update-user/:userId" element={<UpdateUser/>}/>
               </>

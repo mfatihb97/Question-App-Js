@@ -54,7 +54,7 @@ export const UserManagementPage = () => {
                         users.map(user => (
                             <tr key={user.id}>
                                 <td>{user.id}</td>
-                                <td>{user.username}</td>
+                                <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
                                     <button className='btn btn-outline-danger' onClick={() => deleteUser(user.id)}>Delete</button>
