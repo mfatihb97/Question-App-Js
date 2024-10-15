@@ -37,7 +37,7 @@ export const SignUp = () => {
 
         } catch (error) {
             console.log('Error registering user: ', error);
-            alert('An error occured while registering user')
+            alert(error.message ||'An error occured while registering user')
         }
     }
     return (
@@ -50,9 +50,7 @@ export const SignUp = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" name='email' value={formData.email} onChange={handleInputChange} />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
+                    
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>

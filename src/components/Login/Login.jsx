@@ -35,9 +35,9 @@ export const Login = () => {
 
     return (
         <div>
-            {error && <p>{error}</p>}
             <Form onSubmit={handleSubmit} className='container-fluid d-flex flex-column justify-content-center align-items-center vh-100 bg-body-secondary'>
                 <div className='border border-primary rounded p-5'>
+                    {error && <p>{error}</p>}
                     <Form.Group className="mb-3" controlId="formBasicUsername">
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
